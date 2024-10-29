@@ -13,9 +13,17 @@ import com.oraclejava.model.Message;
 public class App {
     public static void main(String[] args) {
         ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+        
         Message message = context.getBean("message", Message.class);
-        System.out.println("ID:" + message.getMessageId());
-        System.out.println("Message:" + message.getMessage());
+        
+        message.setMessageId(1002);
+        message.setMessage("어벤져스");
+        
+        System.out.println(message.getMessageId() + "\t" + message.getMessage());
+        
+        Message message1 = context.getBean("message", Message.class);
+        
+        System.out.println(message1.getMessageId() + "\t" + message1.getMessage());
         
         ((AbstractApplicationContext) context).close();
         		
